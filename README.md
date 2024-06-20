@@ -49,9 +49,13 @@ This is a repository to experimentally convert the [FBD Sequencer](https://githu
    export default defineNuxtConfig({
      ...
      runtimeConfig: {
-       public: {
+       private: {
          github: {
            token: process.env.GITHUB_TOKEN,
+         },
+       },
+       public: {
+         github: {
            owner: "ain1084",
            repo: "rust_fbd_sequencer",
            path: "fbd_files",
