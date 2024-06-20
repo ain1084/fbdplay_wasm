@@ -7,9 +7,13 @@ export default defineNuxtConfig({
     transpile: ["vuetify"],
   },
   runtimeConfig: {
-    public: {
+    private: {
       github: {
         token: process.env.GITHUB_TOKEN,
+      },
+    },
+    public: {
+      github: {
         owner: "ain1084",
         repo: "rust_fbd_sequencer",
         path: "fbd_files",

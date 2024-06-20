@@ -15,7 +15,7 @@ export default defineEventHandler(async (event): Promise<GithubContent[]> => {
     throw new Error("Owner, repo are required query parameters");
   }
 
-  const token = useRuntimeConfig().public.github.token;
+  const token = useRuntimeConfig().private.github.token;
   if (!token) {
     throw new Error("GITHUB_TOKEN is not set in environment variables");
   }
