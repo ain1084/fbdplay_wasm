@@ -1,0 +1,37 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "run-s build:wasm build:nuxt",
+    "build:nuxt": "nuxt build",
+    "build:wasm": "wasm-pack build rs_fbdplay --release --target web",
+    "dev": "run-s dev:wasm dev:nuxt",
+    "dev:nuxt": "nuxt dev --no-fork",
+    "dev:wasm": "wasm-pack build rs_fbdplay --release --target web",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@octokit/rest": "^20.1.1",
+    "nuxt": "^3.12.2",
+    "sass": "^1.77.6",
+    "vue": "^3.4.29",
+    "vuetify": "^3.6.10"
+  },
+  "devDependencies": {
+    "@mdi/js": "^7.4.47",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@tsconfig/strictest": "^2.0.5",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.26.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.3.2"
+  }
+}

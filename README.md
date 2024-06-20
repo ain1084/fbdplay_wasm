@@ -1,0 +1,99 @@
+# fbdplay wasm
+
+This is a repository to experimentally convert the [FBD Sequencer](https://github.com/ain1084/rust_fbd_sequencer) into a web application.
+
+## Overview
+
+- Using Nuxt3 as the web framework.
+- Using Vuetify3 as the UI design framework.
+- Converting fbdplay implemented in Rust to WebAssembly.
+- Retrieving a list of files from the fbd_files in the [FBD Sequencer](https://github.com/ain1084/rust_fbd_sequencer) repository using the GitHub API.
+- Getting all .fbd files and reflecting the titles obtained from their contents in the list.
+- Starting playback by selecting a file.
+- Implementing a settings dialog to change the clock rate, sample rate, and usage crate.
+- Deploying to Vercel.
+
+## Deployed Site
+
+[https://fbdplay-wasm.vercel.app/](https://fbdplay-wasm.vercel.app/)
+
+(Rarely, but it may happen)**if the GitHub API rate limit is reached, it may not function properly. In such cases, please wait for a while and try again.**
+
+## Starting the Nuxt Development Server Locally
+
+### Required Software
+
+- rustc and node should be operational
+- wasm-pack installed
+
+**Includes configuration files for Dev container. Use them if necessary.**
+
+1. Clone the repository.
+   ```
+   git clone git@github.com:ain1084/rust_fbdplay_wasm.git
+   ```
+1. Obtain a personal access token from GitHub and grant it Read access to code and metadata.
+
+1. Paste the token into the `.env` file in the format `GITHUB_TOKEN=token`.
+
+   `rust_fbdplay_wasm/.env`
+
+   ```
+   GITHUB_TOKEN=github_pat_123456789aaaa.......
+   ```
+
+1. Modify the runtimeConfig section of `nuxt.config.ts` as needed.
+   The following configuration retrieves .fbd files from https://github.com/ain1084/rust_fbd_sequencer/tree/main/fbd_files.
+
+   ```
+   export default defineNuxtConfig({
+     ...
+     runtimeConfig: {
+       public: {
+         github: {
+           token: process.env.GITHUB_TOKEN,
+           owner: "ain1084",
+           repo: "rust_fbd_sequencer",
+           path: "fbd_files",
+         },
+       },
+     },
+     ...
+   });
+   ```
+
+1. Run the following commands to start the development server.
+   ```
+   npm install
+   npm run dev
+   ```
+1. Access the URL displayed at startup (e.g., http://localhost:3000/) in your browser.
+
+## Deploy to Vercel
+
+How to deploy and operate on Vercel.
+
+1. Fork the repository.
+1. Refer to the "Starting the Nuxt Development Server Locally" section above and make the necessary changes.
+   - Change the target repository if necessary.
+   - Adding the token to `.env` is not required for deployment.
+1. Obtain a personal access token. You can reuse the token generated for the development server or create a new one.
+
+From here, operate on Vercel.
+
+1. Import the GitHub repository worked on above.
+1. Add environment variables (Name: GITHUB_TOKEN, Value: personal access token).
+1. Build.
+
+## License
+
+Licensed under either of
+
+- Apache License, Version 2.0
+  ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+  at your option.
+
+## Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.
