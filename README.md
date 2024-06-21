@@ -30,7 +30,7 @@ This is a repository to experimentally convert the [FBD Sequencer](https://githu
 
 1. Clone the repository.
    ```
-   git clone git@github.com:ain1084/rust_fbdplay_wasm.git
+   git clone https://github.com/ain1084/fbdplay_wasm.git
    ```
 1. Obtain a personal access token from GitHub and grant it Read access to code and metadata.
 
@@ -49,11 +49,7 @@ This is a repository to experimentally convert the [FBD Sequencer](https://githu
    export default defineNuxtConfig({
      ...
      runtimeConfig: {
-       private: {
-         github: {
-           token: process.env.GITHUB_TOKEN,
-         },
-       },
+       ...
        public: {
          github: {
            owner: "ain1084",
