@@ -1,8 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
+import vuetify from "vite-plugin-vuetify";
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["vuetify/lib/styles/main.sass"],
+  vite: {
+    plugins: [
+      vuetify({
+        autoImport: true,
+        styles: "sass",
+      }),
+    ],
+  },
   build: {
     transpile: ["vuetify"],
   },
