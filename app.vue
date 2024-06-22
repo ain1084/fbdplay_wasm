@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <content-list />
+    <v-main>
+      <content-list />
+    </v-main>
     <v-footer app dense>
       <v-btn :icon="mdiCog" class="ml-2" @click="showSettings = true" />
     </v-footer>
