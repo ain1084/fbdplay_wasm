@@ -82,7 +82,9 @@ How to deploy and operate on Vercel.
 From here, operate on Vercel.
 
 1. Import the GitHub repository worked on above.
-1. Add environment variables (Name: GITHUB_TOKEN, Value: personal access token).
+1. Change Project Settings.
+   - Environment Variables: Add environment variables
+     - Name: GITHUB_TOKEN, Value: personal access token.
 1. Build.
 
 ## License

@@ -13,8 +13,7 @@ js-sys = "0.3.69"
 web-sys = { version = "0.3", features = ["console"]}
 psg_lite = "*"
 psg = "*"
-fbd_sequencer = "*"
-tinyaudio = "*"
+fbd_sequencer = "0.2.0"
 direct_ring_buffer = "0.2.0"
 
 [profile.release]

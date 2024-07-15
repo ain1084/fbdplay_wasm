@@ -1,7 +1,0 @@
-{
-  "name": "wasm-pack",
-  "id": "wasm-pack",
-  "version": "1.0.0",
-  "description": "Installs wasm-pack",
-  "onCreateCommand": "cargo install wasm-pack"
-}

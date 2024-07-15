@@ -1,9 +1,15 @@
 {
+  "eslint.useESLintClass": true,
+  "eslint.useFlatConfig": true,
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "rust-analyzer.linkedProjects": ["rs_fbdplay/Cargo.toml"]
+  "rust-analyzer.linkedProjects": [
+    "rs_fbdplay/Cargo.toml"
+  ],
 }
