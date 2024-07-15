@@ -14,17 +14,16 @@
   // ]
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {},
-    "./wasm-pack": {}
+    "ghcr.io/devcontainers/features/node:1": {}
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "echo 'source /home/vscode/.oh-my-zsh/plugins/gitfast/git-completion.bash' >> /home/vscode/.bashrc",
+  "postCreateCommand": "/bin/bash .devcontainer/postCreateCommand.sh",
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": ["Vue.volar", "esbenp.prettier-vscode"]
+      "extensions": ["Vue.volar"]
     }
   }
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
