@@ -96,6 +96,8 @@ export const useSettings = () => {
       },
     }),
 
+    audioContext: () => manager.createAudioContext(),
+
     // Methods to create AudioContext and AudioStreamFactory
     // Note: These are not reactive to ensure AudioContext creation is user-triggered
     createAudioStreamFactory: () => manager.createStreamNodeFactory(),
