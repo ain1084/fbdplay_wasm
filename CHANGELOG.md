@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.5] - 2023-07-15
+## [0.1.6] - 2024-07-21
+
+### Added
+- Added Audio level meter
+- Added Play stop button
+
+## [0.1.5] - 2024-07-15
 
 ### Added
 - Added CHANGELOG.md
@@ -16,7 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - None
 
-## [0.1.4] - 2023-06-28
+## [0.1.4] - 2024-06-28
 
 ### Added
 - Added header for SHaredArrayBuffer
@@ -27,7 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - None
 
-## [0.1.3] - 2023-06-22
+## [0.1.3] - 2024-06-22
 
 ### Added
 - None
@@ -38,7 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - Fixed an issue where the last content was hidden and not displayed the behind the footer.
 
-## [0.1.2] - 2023-06-22
+## [0.1.2] - 2024-06-22
 
 ### Added
 - None
@@ -50,7 +56,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - None
 
-## [0.1.1] - 2023-06-21
+## [0.1.1] - 2024-06-21
 
 ### Added
 - None
@@ -61,7 +67,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 - Fixed the issue where the token was public.
 
-## [0.1.0] - 2023-06-21
+## [0.1.0] - 2024-06-21
 
 ### Added
 - Initial release.
