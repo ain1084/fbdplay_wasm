@@ -5,7 +5,7 @@
         <content-list />
       </v-main>
       <v-footer app dense>
-        <app-footer @show-settings="onShowSettings"/>
+        <app-footer @show-settings="showSettings = true"/>
       </v-footer>
     </v-app>
     <settings-dialog v-model="showSettings" />
@@ -20,9 +20,5 @@ onMounted(async () => {
 })
 
 const showSettings = ref(false)
-const onShowSettings = () => {
-  const _ = useSettings().sampleRate
-  showSettings.value = true
-}
 
 </script>

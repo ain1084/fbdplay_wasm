@@ -1,4 +1,4 @@
-export const useAudioLevelMeter = (totalBars: Readonly<Ref<number>>, peakHoldTime: number, expectedMaxLevel: number) => {
+export const useAudioLevelMeter = (totalBars: Readonly<Ref<number>>, peakHoldTime: Readonly<Ref<number>>, expectedMaxAmplitude: number) => {
   const level = ref(0)
   const peakHold = ref(0)
 
@@ -17,7 +17,7 @@ export const useAudioLevelMeter = (totalBars: Readonly<Ref<number>>, peakHoldTim
     public getLevel(): number {
       this._analyser.getByteFrequencyData(this._data)
       const sum = this._data.reduce((sum, value) => sum + value, 0)
-      return sum / (this._data.length * 255.0 * expectedMaxLevel)
+      return sum / (this._data.length * 255.0 * expectedMaxAmplitude)
     }
   }
 
@@ -36,7 +36,7 @@ export const useAudioLevelMeter = (totalBars: Readonly<Ref<number>>, peakHoldTim
       const value = this._analyzeContext.getLevel()
       level.value = Math.floor(value * totalBars.value)
       const now = Date.now()
-      if (peakHold.value < level.value || this._prevTime + peakHoldTime < now) {
+      if (peakHold.value < level.value || this._prevTime + peakHoldTime.value < now) {
         this._prevTime = now
         peakHold.value = level.value
       }

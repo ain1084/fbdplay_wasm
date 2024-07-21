@@ -77,26 +77,31 @@ export const useSettings = () => {
   const sampleRateRef = ref<number | null>(null)
 
   return {
-    // Reactive state for clock rate and PSG crate settings
-    clockRate: useState<number>('clock-rate', () => 2.0),
-    psgCrate: useState<PsgCrate>('psg-crate', () => PsgCrate.Psg),
-    streamType: useState<StreamType>('stream-type', () => 'worker'),
+    levelMeter: {
+      bars: useState('bars', () => 30),
+      peakHoldTime: useState('peak-hold-time', () => 1000),
+    },
 
-    // Computed property for sample rate, lazy-loaded and updated through the manager
-    sampleRate: computed({
-      get: (): number => {
-        sampleRateRef.value ??= manager.getSampleRate()
-        console.log(`Get sampleRate: ${sampleRateRef.value}`)
-        return sampleRateRef.value
-      },
-      set: (sampleRate: number) => {
-        console.log(`Set sampleRate: ${sampleRate}`)
-        manager.setSampleRate(sampleRate)
-        sampleRateRef.value = sampleRate
-      },
-    }),
-
-    audioContext: () => manager.createAudioContext(),
+    audioOutput: {
+      // Reactive state for clock rate and PSG crate settings
+      clockRate: useState('clock-rate', () => 2.0),
+      psgCrate: useState('psg-crate', () => PsgCrate.Psg),
+      streamType: useState('stream-type', () => 'worker' as StreamType),
+      // Computed property for sample rate, lazy-loaded and updated through the manager
+      sampleRate: computed({
+        get: (): number => {
+          sampleRateRef.value ??= manager.getSampleRate()
+          console.log(`Get sampleRate: ${sampleRateRef.value}`)
+          return sampleRateRef.value
+        },
+        set: (sampleRate: number) => {
+          console.log(`Set sampleRate: ${sampleRate}`)
+          manager.setSampleRate(sampleRate)
+          sampleRateRef.value = sampleRate
+        },
+      }),
+    },
+    // audioContext: () => manager.createAudioContext(),
 
     // Methods to create AudioContext and AudioStreamFactory
     // Note: These are not reactive to ensure AudioContext creation is user-triggered

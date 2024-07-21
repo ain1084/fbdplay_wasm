@@ -14,14 +14,14 @@ interface Props {
   totalBars?: number
   gapPercentage?: number
   peakHoldTime?: number
-  expectedMaxLevel?: number
+  expectedMaxAmplitude?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
   totalBars: 30,
   gapPercentage: 10,
   peakHoldTime: 1000,
-  expectedMaxLevel: 1.0,
+  expectedMaxAmplitude: 1.0,
 })
 
 const barStyle = computed(() => ({
@@ -30,8 +30,9 @@ const barStyle = computed(() => ({
 }))
 
 const totalBars = computed(() => props.totalBars)
+const peakHoldTime = computed(() => props.peakHoldTime)
 
-const { level, peakHold } = useAudioLevelMeter(totalBars, props.peakHoldTime, props.expectedMaxLevel)
+const { level, peakHold } = useAudioLevelMeter(totalBars, peakHoldTime, props.expectedMaxAmplitude)
 
 useFbdPlayer().addEventListener((ev) => {
   switch (ev.type) {

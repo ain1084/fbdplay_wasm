@@ -57,18 +57,18 @@ class PlayerContext {
   }
 
   public static async create(data: Uint8Array) {
-    const { clockRate, psgCrate, streamType, createAudioStreamFactory } = useSettings()
+    const { audioOutput, createAudioStreamFactory } = useSettings()
     const factory = await createAudioStreamFactory()
     const sampleRate = factory.audioContext.sampleRate
 
     const fillerParams: FbdFrameFillerParams = {
       data: new Uint8Array(data),
-      clockRate: clockRate.value,
+      clockRate: audioOutput.clockRate.value,
       sampleRate: factory.audioContext.sampleRate,
-      psgCrate: psgCrate.value,
+      psgCrate: audioOutput.psgCrate.value,
     }
 
-    const node = streamType.value === 'timer'
+    const node = audioOutput.streamType.value === 'timer'
       ? await factory.createTimedBufferNode(new FbdFrameFiller(fillerParams), { sampleRate, channelCount: 1 })
       : await factory.createWorkerBufferNode(worker, { sampleRate, channelCount: 1, fillerParams })
     return new PlayerContext(node)
