@@ -1,43 +1,35 @@
 <template>
-  <v-dialog v-if="modelValue" activator="parent" @click:outside="close">
-    <v-card title="Settings">
-      <v-card-text>
-        <v-card v-for="(category, i) in settings" :key="i" :title="category.title">
-          <div v-for="(setting, j) in category.items" :key="j">
-            <v-select
-              v-if="setting.type === 'select'"
-              v-model="setting.value.value"
-              :label="setting.label"
-              :items="setting.selects" />
-            <v-slider
-              v-else-if="setting.type === 'slider'"
-              v-model="setting.value.value"
-              thumb-label
-              :label="setting.label"
-              :step="setting.step"
-              :min="setting.min"
-              :max="setting.max" />
-          </div>
-        </v-card>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn text="Close" @click="close" />
-      </v-card-actions>
-    </v-card>
+  <v-dialog transition="dialog-bottom-transition">
+    <template #activator="{ props: activatorProps }">
+      <v-btn v-bind="activatorProps" :icon="mdiCog" />
+    </template>
+    <template #default="{ isActive }">
+      <v-card title="Settings">
+        <v-card-text>
+          <v-card v-for="(category, i) in settings" :key="i" :title="category.title">
+            <div v-for="(item, j) in category.items" :key="j">
+              <v-select
+                v-if="item.type === 'select'"
+                v-model="item.value.value"
+                v-bind="item" />
+              <v-slider
+                v-else-if="item.type === 'slider'"
+                v-model="item.value.value"
+                thumb-label
+                v-bind="item" />
+            </div>
+          </v-card>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn text="Close" @click="isActive.value = false" />
+        </v-card-actions>
+      </v-card>
+    </template>
   </v-dialog>
 </template>
 <script setup lang="ts">
+import { mdiCog } from '@mdi/js'
 import { PsgCrate } from '@/rs_fbdplay/pkg/rs_fbdplay'
-
-const { modelValue } = defineProps<{
-  modelValue: boolean
-}>()
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
-
-const close = () => emit('update:modelValue', false)
 
 const { audioOutput, levelMeter } = useSettings()
 
@@ -45,7 +37,7 @@ type SettingItems = Readonly<
   {
     type: 'select'
     label: string
-    selects: {
+    items: {
       title: string
       value: number | string | PsgCrate
     }[]
@@ -72,7 +64,7 @@ const settings: SettingCategory[] = [
       {
         type: 'select',
         label: 'ClockRate Rate',
-        selects: [
+        items: [
           { title: '2.0MHz', value: 2.0 },
           { title: '1.7897725MHz', value: 1.7897725 },
         ],
@@ -81,7 +73,7 @@ const settings: SettingCategory[] = [
       {
         type: 'select',
         label: 'Sample Rate',
-        selects: [
+        items: [
           { title: '44.1KHz', value: 44100 },
           { title: '48KHz', value: 48000 },
           { title: '88.2KHz', value: 88200 },
@@ -94,7 +86,7 @@ const settings: SettingCategory[] = [
       {
         type: 'select',
         label: 'PSG Crate',
-        selects: [
+        items: [
           { title: 'PSG', value: PsgCrate.Psg },
           { title: 'PSG Lite', value: PsgCrate.PsgLite },
         ],
@@ -103,7 +95,7 @@ const settings: SettingCategory[] = [
       {
         type: 'select',
         label: 'Stream Type',
-        selects: [
+        items: [
           { title: 'Timer', value: 'timer' },
           { title: 'Worker', value: 'worker' },
         ],
