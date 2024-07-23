@@ -31,44 +31,39 @@ const barStyle = computed(() => ({
 
 const totalBars = computed(() => props.totalBars)
 const peakHoldTime = computed(() => props.peakHoldTime)
-
-const { level, peakHold } = useAudioLevelMeter(totalBars, peakHoldTime, props.expectedMaxAmplitude)
-
-useFbdPlayer().addEventListener((ev) => {
-  switch (ev.type) {
-    case 'stop':
-      stop()
-      break
-  }
-})
+const expectedMaxAmplitude = computed(() => props.expectedMaxAmplitude)
+const { level, peakHold } = useAudioLevelMeter({ totalBars, peakHoldTime, expectedMaxAmplitude })
 </script>
 
 <style scoped lang="scss">
-
 .level-meter {
   display: flex;
   align-items: flex-end;
   width: 100%;
   background-color: rgb(var(--v-theme-surface));
 }
+
 .bar {
   height: 100%;
   position: relative;
-}
-.bar::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: var(--bar-content-width);
-  background-color: rgb(var(--v-theme-surface-light));
-  transition: background-color 0.1s ease;
-}
-.bar.active::before {
-  background-color: rgb(var(--v-theme-surface-bright))
-}
-.bar.peak-hold::before {
-  background-color: rgb(var(--v-theme-surface-variant));
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--bar-content-width);
+    background-color: rgb(var(--v-theme-surface-light));
+    transition: background-color 0.1s ease;
+  }
+
+  &.active::before {
+    background-color: rgb(var(--v-theme-surface-bright));
+  }
+
+  &.peak-hold::before {
+    background-color: rgb(var(--v-theme-surface-variant));
+  }
 }
 </style>

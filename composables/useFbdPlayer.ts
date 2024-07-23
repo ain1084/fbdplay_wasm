@@ -37,8 +37,8 @@ class PlayerContext {
     node.addEventListener(UnderrunEvent.type, this.handleUnderrun.bind(this))
     node.connect(node.context.destination)
     node.start()
-    fireEvent({ type: 'start', node })
     isPlaying.value = true
+    fireEvent({ type: 'start', node })
   }
 
   private handleStopped(ev: StopEvent) {
@@ -73,6 +73,14 @@ class PlayerContext {
       : await factory.createWorkerBufferNode(worker, { sampleRate, channelCount: 1, fillerParams })
     return new PlayerContext(node)
   }
+
+  public get node(): OutputStreamNode {
+    return this._node
+  }
+
+  public get position(): Date | undefined {
+    return new Date(Number(this._node.totalReadFrames * BigInt(1000) / BigInt(this._node.context.sampleRate)))
+  }
 }
 
 const play = async (data: Uint8Array) => {
@@ -83,6 +91,10 @@ const play = async (data: Uint8Array) => {
 const stop = async () => {
   await playerContext?.stop()
   playerContext = undefined
+}
+
+const getPosition = (): Date | undefined => {
+  return playerContext?.position
 }
 
 const addEventListener = (listener: PlayerEventListener) => {
@@ -102,6 +114,7 @@ export const useFbdPlayer = () => {
     play,
     stop,
     isPlaying,
+    getPosition,
     addEventListener: (listener: PlayerEventListener) => {
       addEventListener(listener)
       onUnmounted(() => {
