@@ -4,7 +4,7 @@ import vuetify from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['vuetify/lib/styles/main.sass'],
+  css: ['vuetify/lib/styles/main.sass', '/assets/main.scss'],
   vite: {
     optimizeDeps: {
       exclude: [

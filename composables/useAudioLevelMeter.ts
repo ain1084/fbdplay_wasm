@@ -19,15 +19,17 @@ class LevelMeterContext {
   private readonly _analyzeContext: AnalyzeContext
   private readonly _level: Ref<number>
   private readonly _peakHold: Ref<number>
+  private readonly _decibels: Ref<number | undefined>
   private readonly _params: AudioLevelMeterParams
 
   private _animationFrameId: number = 0
   private _prevTime: number = Date.now()
 
-  constructor(sourceNode: AudioNode, level: Ref<number>, peakHold: Ref<number>, params: AudioLevelMeterParams) {
+  constructor(sourceNode: AudioNode, level: Ref<number>, peakHold: Ref<number>, decibels: Ref<number | undefined>, params: AudioLevelMeterParams) {
     this._analyzeContext = new AnalyzeContext(sourceNode)
     this._level = level
     this._peakHold = peakHold
+    this._decibels = decibels
     this._params = params
     this.requestAnimationFrame()
   }
@@ -36,18 +38,21 @@ class LevelMeterContext {
     cancelAnimationFrame(this._animationFrameId)
     this._level.value = 0
     this._peakHold.value = 0
+    this._decibels.value = undefined
   }
 
   private requestAnimationFrame() {
     this._animationFrameId = requestAnimationFrame(() => {
-      const level = this._level
-      const peakHold = this._peakHold
-      level.value = Math.floor(
-        this._analyzeContext.getLevel() * this._params.totalBars.value / this._params.expectedMaxAmplitude.value)
+      const level = this._analyzeContext.getLevel()
+      this._level.value = Math.floor(
+        level * this._params.totalBars.value / this._params.expectedMaxAmplitude.value)
       const now = Date.now()
-      if (peakHold.value < level.value || this._prevTime + this._params.peakHoldTime.value < now) {
+      if (this._peakHold.value < this._level.value || this._prevTime + this._params.peakHoldTime.value < now) {
         this._prevTime = now
-        peakHold.value = level.value
+        this._peakHold.value = this._level.value
+        const decibels = 20 * Math.log(level / this._params.expectedMaxAmplitude.value)
+        const minDecibels = -99
+        this._decibels.value = (minDecibels >= decibels) ? undefined : this._decibels.value = Math.min(0, decibels)
       }
       this.requestAnimationFrame()
     })
@@ -64,11 +69,12 @@ export const useAudioLevelMeter = (params: AudioLevelMeterParams) => {
   let context: LevelMeterContext | undefined = undefined
   const level = ref(0)
   const peakHold = ref(0)
+  const decibels = ref<number | undefined>(undefined)
 
   useFbdPlayer().addEventListener((ev) => {
     switch (ev.type) {
       case 'start':
-        context = new LevelMeterContext(ev.node, level, peakHold, params)
+        context = new LevelMeterContext(ev.node, level, peakHold, decibels, params)
         break
       case 'stop':
         context?.cleanup()
@@ -80,5 +86,6 @@ export const useAudioLevelMeter = (params: AudioLevelMeterParams) => {
   return {
     level,
     peakHold,
+    decibels,
   }
 }

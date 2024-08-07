@@ -1,10 +1,12 @@
 <template>
   <div class="level-meter">
-    <div
+      <div
       v-for="n in totalBars" :key="n"
       class="bar"
       :class="{ active: n <= level, 'peak-hold': n === peakHold }"
       :style="barStyle" />
+    <div class="db-value">-{{ formattedDecibels }}db
+    </div>
   </div>
 </template>
 
@@ -32,7 +34,14 @@ const barStyle = computed(() => ({
 const totalBars = computed(() => props.totalBars)
 const peakHoldTime = computed(() => props.peakHoldTime)
 const expectedMaxAmplitude = computed(() => props.expectedMaxAmplitude)
-const { level, peakHold } = useAudioLevelMeter({ totalBars, peakHoldTime, expectedMaxAmplitude })
+const formattedDecibels = computed(() => {
+  if (decibels.value === undefined) {
+    return '--'
+  }
+  const num = -decibels.value
+  return num < 10.0 ? num.toFixed(1) : Math.floor(num).toString()
+})
+const { level, peakHold, decibels } = useAudioLevelMeter({ totalBars, peakHoldTime, expectedMaxAmplitude })
 </script>
 
 <style scoped lang="scss">
@@ -41,6 +50,7 @@ const { level, peakHold } = useAudioLevelMeter({ totalBars, peakHoldTime, expect
   align-items: flex-end;
   width: 100%;
   background-color: rgb(var(--v-theme-surface));
+  transform: translate(0, 50%);
 }
 
 .bar {
@@ -65,5 +75,13 @@ const { level, peakHold } = useAudioLevelMeter({ totalBars, peakHoldTime, expect
   &.peak-hold::before {
     background-color: rgb(var(--v-theme-surface-variant));
   }
+}
+
+.db-value {
+  align-self: center;
+  font-family: "DSEG7-Modern", "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  padding: 0rem 0.5rem;
 }
 </style>
