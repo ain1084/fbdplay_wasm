@@ -87,6 +87,10 @@ From here, operate on Vercel.
      - Name: GITHUB_TOKEN, Value: personal access token.
 1. Build.
 
+## Acknowledgements
+
+This project uses Font "DSEG" by keshikan. If you're using this font in your project, the author appreciates a link to thir GitHub repository: [keshikan/DSEG](https://github.com/keshikan/DSEG)
+
 ## License
 
 Licensed under either of
