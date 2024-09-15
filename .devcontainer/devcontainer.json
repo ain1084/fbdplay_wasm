@@ -23,7 +23,7 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": ["Vue.volar"]
+      "extensions": ["Vue.volar", "fill-labs.dependi"]
     }
   }
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
