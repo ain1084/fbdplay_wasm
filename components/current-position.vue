@@ -38,7 +38,7 @@ useFbdPlayer().addEventListener((ev) => {
 })
 </script>
 
-<style type="scss" scoped>
+<style lang="scss" scoped>
 .fixed-pitch {
   font-family: "DSEG7-Modern", "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.75rem;
