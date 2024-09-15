@@ -13,12 +13,15 @@
       :gap-percentage="15"
       :peak-hold-time="peakHoldTime"
       :style="{ height: '5px' }" />
-    <settings-dialog class="item fixed" />
+    <v-btn class="item fixed" :icon="mdiCog" @click="isShowSettings = true" />
+    <settings-dialog v-model="isShowSettings" class="item fixed" />
   </v-footer>
 </template>
 
 <script setup lang="ts">
-import { mdiStop } from '@mdi/js'
+import { mdiStop, mdiCog } from '@mdi/js'
+
+const isShowSettings = ref(false)
 
 const { levelMeter: levelMeterSettings } = useSettings()
 const bars = computed(() => levelMeterSettings.bars.value)

@@ -1,12 +1,10 @@
 <template>
   <client-only>
     <v-app>
-      <v-main>
+      <v-main scrollable height="auto">
         <content-list />
       </v-main>
-      <v-footer app dense>
-        <app-footer @show-settings="showSettings = true"/>
-      </v-footer>
+      <app-footer @show-settings="showSettings = true"/>
     </v-app>
     <settings-dialog v-model="showSettings" />
   </client-only>
