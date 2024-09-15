@@ -17,18 +17,17 @@
   },
   "devDependencies": {
     "@ain1084/audio-worklet-stream": "^0.1.7",
-    "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
-    "@nuxt/eslint": "^0.5.4",
+    "@nuxt/eslint": "^0.5.7",
     "@octokit/rest": "^21.0.2",
-    "@stylistic/eslint-plugin": "^2.7.1",
+    "@stylistic/eslint-plugin": "^2.8.0",
     "@tsconfig/strictest": "^2.0.5",
     "@types/audioworklet": "^0.0.60",
-    "eslint": "^8.57.0",
+    "eslint": "^9.10.0",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.13.1",
     "rimraf": "^6.0.1",
-    "sass": "^1.77.8",
+    "sass": "^1.78.0",
     "vite-plugin-vuetify": "^2.0.4",
     "vuetify": "^3.7.1"
   }

@@ -1,35 +1,39 @@
 <template>
-  <v-dialog transition="dialog-bottom-transition">
-    <template #activator="{ props: activatorProps }">
-      <v-btn v-bind="activatorProps" :icon="mdiCog" />
-    </template>
-    <template #default="{ isActive }">
-      <v-card title="Settings">
-        <v-card-text>
-          <v-card v-for="(category, i) in settings" :key="i" :title="category.title">
-            <div v-for="(item, j) in category.items" :key="j">
-              <v-select
-                v-if="item.type === 'select'"
-                v-model="item.value.value"
-                v-bind="item" />
-              <v-slider
-                v-else-if="item.type === 'slider'"
-                v-model="item.value.value"
-                thumb-label
-                v-bind="item" />
-            </div>
-          </v-card>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn text="Close" @click="isActive.value = false" />
-        </v-card-actions>
-      </v-card>
-    </template>
+  <v-dialog v-if="modelValue" activator="parent" transition="dialog-bottom-transition" @click:outside="close">
+    <v-card title="Settings">
+      <v-card-text>
+        <v-card v-for="(category, i) in settings" :key="i" :title="category.title">
+          <div v-for="(item, j) in category.items" :key="j">
+            <v-select
+              v-if="item.type === 'select'"
+              v-model="item.value.value"
+              v-bind="item" />
+            <v-slider
+              v-else-if="item.type === 'slider'"
+              v-model="item.value.value"
+              thumb-label
+              v-bind="item" />
+          </div>
+        </v-card>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn text="Close" @click="close" />
+      </v-card-actions>
+    </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
-import { mdiCog } from '@mdi/js'
 import { PsgCrate } from '@/rs_fbdplay/pkg/rs_fbdplay'
+
+defineProps<{
+  modelValue: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: boolean): void
+}>()
+
+const close = () => emit('update:modelValue', false)
 
 const { audioOutput, levelMeter } = useSettings()
 

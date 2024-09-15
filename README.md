@@ -1,6 +1,9 @@
 # fbdplay wasm
 
-This is a repository to experimentally convert the [FBD Sequencer](https://github.com/ain1084/rust_fbd_sequencer) into a web application.
+This project aims to create a Web Application using my original works: [PSG Lite](https://github.com/ain1084/rust_psg_lite)[^1], [Audio Worker Stream Library](https://github.com/ain1084/audio-worklet-stream), and [FBD Sequencer](https://github.com/ain1084/rust_fbd_sequencer). In simple terms, it emulates the PSG (AY-3-8910) sound chip and plays old game music using the Web Audio API. It does not have the capability to play arbitrary music[^2].
+
+[^1]: By default, the [psg crate (by Emil Loer)](https://crates.io/crates/psg), which offers higher sound quality than PSG Lite, is selected. This can be changed in the Settings.
+[^2]: Copyright of the music: © Nihon Falcom Corporation.
 
 ## Overview
 

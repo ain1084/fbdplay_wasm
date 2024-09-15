@@ -49,7 +49,7 @@ class AudioSettingsManager {
       this.currentSampleRate = this.audioContext.sampleRate
       this.requestedSampleRate = null
       this.streamNodeFactory = null
-      console.log(`Create AudioContext sampleRate: ${this.currentSampleRate}`)
+      // console.log(`Create AudioContext sampleRate: ${this.currentSampleRate}`)
     }
     return this.audioContext
   }
@@ -64,7 +64,7 @@ class AudioSettingsManager {
   async createStreamNodeFactory(): Promise<StreamNodeFactory> {
     const audioContext = this.createAudioContext()
     if (!this.streamNodeFactory) {
-      console.log(`Create AudioStreamFactory sampleRate: ${audioContext.sampleRate}`)
+      // console.log(`Create AudioStreamFactory sampleRate: ${audioContext.sampleRate}`)
       this.streamNodeFactory = await StreamNodeFactory.create(audioContext)
     }
     return this.streamNodeFactory
