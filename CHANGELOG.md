@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.14] - 2024-10-09
+
+### Security
+- Updated dependencies to address security vulnerabilities:
+  - Bumped `rollup` from 4.21.3 to 4.24.0
+  - Bumped `vite` from 5.4.5 to 5.4.8
+- No functional changes; only dependency updates to fix security issues.
+
+### Chore
+- Updated various npm dependencies to their latest versions to ensure compatibility and maintainability.
+- No changes to functionality or behavior.
+- Refer to `package.json` for detailed version changes.
+
 ## [0.1.13] - 2024-09-16
 
 ### Fixed

@@ -6,6 +6,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['vuetify/lib/styles/main.sass', '/assets/main.scss'],
   vite: {
+    css: {
+      preprocessorOptions: {
+        sass: {
+          api: 'modern-compiler',
+        },
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
     optimizeDeps: {
       exclude: [
         '@ain1084/audio-worklet-stream',
