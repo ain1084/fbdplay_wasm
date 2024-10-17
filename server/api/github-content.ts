@@ -29,7 +29,7 @@ export default defineEventHandler(async (event): Promise<GithubContent[]> => {
       path,
     })
     if (!Array.isArray(data)) {
-      throw new TypeError(`Edpected an array but got:${data}`)
+      throw new TypeError(`Expected an array but got:${data}`)
     }
     return data
       .filter(item => item.type === 'dir' || item.type === 'file')

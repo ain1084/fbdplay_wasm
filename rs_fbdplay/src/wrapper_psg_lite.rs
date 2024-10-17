@@ -19,7 +19,7 @@ impl PsgTrait for PsgWrapper {
     }
 
     fn clock_rate(&self) -> u32 {
-        self.sg.sample_rate()
+        self.sg.clock_rate()
     }
 
     fn set_tone_period(&mut self, channel: usize, period: u16) {

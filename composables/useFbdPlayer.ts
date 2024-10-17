@@ -8,10 +8,10 @@ import worker from '@/src/fbdPlayer/fbdPlayWorker?worker'
 export type PlayerEvent = Readonly<
   {
     type: 'stop'
-    frames: bigint
+    stoppedAtFrame: bigint
   } | {
     type: 'underrun'
-    frames: number
+    frameCount: number
   } | {
     type: 'start'
     node: AudioNode
@@ -43,11 +43,11 @@ class PlayerContext {
 
   private handleStopped(ev: StopEvent) {
     isPlaying.value = false
-    fireEvent({ type: 'stop', frames: ev.frames })
+    fireEvent({ type: 'stop', stoppedAtFrame: ev.stoppedAtFrame })
   }
 
   private handleUnderrun(ev: UnderrunEvent) {
-    fireEvent({ type: 'underrun', frames: ev.frames })
+    fireEvent({ type: 'underrun', frameCount: ev.frameCount })
   }
 
   public async stop() {

@@ -21,10 +21,10 @@ onMounted(async () => {
 useFbdPlayer().addEventListener((ev) => {
   switch (ev.type) {
     case 'stop':
-      console.log(`stopped (frames: ${ev.frames})`)
+      console.log(`stopped (frame position: ${ev.stoppedAtFrame})`)
       break
     case 'underrun':
-      console.log(`underrun (frames: ${ev.frames})`)
+      console.log(`underrun (frames: ${ev.frameCount})`)
       break
   }
 })
