@@ -8,13 +8,12 @@ edition = "2021"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-wasm-bindgen = "0.2.93"
-js-sys = "0.3.70"
-web-sys = { version = "0.3.70", features = ["console"]}
+wasm-bindgen = "0.2.95"
+js-sys = "0.3.72"
+web-sys = { version = "0.3.72", features = ["console"]}
 psg_lite = "0.1.2"
 psg = "1.0.1"
 fbd_sequencer = "0.2.2"
-direct_ring_buffer = "0.2.0"
 
 [profile.release]
 lto = true

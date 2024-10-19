@@ -39,7 +39,7 @@ This project aims to create a Web Application using my original works: [PSG Lite
 
 1. Paste the token into the `.env` file in the format `GITHUB_TOKEN=token`.
 
-   `rust_fbdplay_wasm/.env`
+   `fbdplay_wasm/.env`
 
    ```
    GITHUB_TOKEN=github_pat_123456789aaaa.......

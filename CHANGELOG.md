@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.16] - 2024-10-20
+
+### Chore
+
+- Updated various npm dependencies to their latest versions to ensure compatibility and maintainability.
+- No changes to functionality or behavior.
+- Refer to `package.json` for detailed version changes.
+
+### Removed
+
+- Removed unused crate dependencies.
+
 ## [0.1.15] - 2024-10-18
 
 ### Changed
