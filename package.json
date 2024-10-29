@@ -16,18 +16,18 @@
     "clean": "npm cache clean --force && rimraf .nuxt .output .vercel dist docs node_modules"
   },
   "devDependencies": {
-    "@ain1084/audio-worklet-stream": "^1.0.3",
+    "@ain1084/audio-worklet-stream": "^1.0.5",
     "@mdi/js": "^7.4.47",
-    "@nuxt/eslint": "^0.6.0",
+    "@nuxt/eslint": "^0.6.1",
     "@octokit/rest": "^21.0.2",
     "@stylistic/eslint-plugin": "^2.9.0",
     "@tsconfig/strictest": "^2.0.5",
-    "@types/audioworklet": "^0.0.61",
+    "@types/audioworklet": "^0.0.62",
     "eslint": "^9.13.0",
     "npm-run-all": "^4.1.5",
     "nuxt": "^3.13.2",
     "rimraf": "^6.0.1",
-    "sass": "^1.80.3",
+    "sass": "^1.80.4",
     "vite-plugin-vuetify": "^2.0.4",
     "vuetify": "^3.7.3"
   }
