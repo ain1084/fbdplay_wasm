@@ -21,7 +21,7 @@ export class FbdFrameFiller implements FrameBufferFiller {
   }
 
   fill(writer: FrameBufferWriter): boolean {
-    writer.write(buffer => this._fbdPlayer.fill_buffer(buffer))
+    writer.write(segment => this._fbdPlayer.fill_buffer(segment.samples))
     return this._fbdPlayer.is_playing()
   }
 }
