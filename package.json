@@ -8,7 +8,7 @@
     "build:wasm": "wasm-pack build rs_fbdplay --release --target web",
     "dev": "run-s dev:wasm dev:nuxt",
     "dev:nuxt": "nuxt dev --no-fork",
-    "dev:wasm": "wasm-pack build rs_fbdplay --release --target web",
+    "dev:wasm": "wasm-pack --log-level error build rs_fbdplay --release --target web",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -16,19 +16,20 @@
     "clean": "npm cache clean --force && rimraf .nuxt .output .vercel dist docs node_modules"
   },
   "devDependencies": {
-    "@ain1084/audio-worklet-stream": "^2.0.1",
+    "@ain1084/audio-worklet-stream": "^2.0.3",
     "@mdi/js": "^7.4.47",
-    "@nuxt/eslint": "^0.7.2",
-    "@octokit/rest": "^21.0.2",
-    "@stylistic/eslint-plugin": "^2.11.0",
+    "@nuxt/eslint": "^0.7.6",
+    "@octokit/rest": "^21.1.1",
+    "@stylistic/eslint-plugin": "^2.13.0",
     "@tsconfig/strictest": "^2.0.5",
-    "@types/audioworklet": "^0.0.64",
+    "@types/audioworklet": "^0.0.102",
+    "@types/node": "^25.9.9",
     "eslint": "^9.15.0",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^3.15.4",
+    "nuxt": "^3.21.11",
     "rimraf": "^6.0.1",
     "sass": "^1.81.0",
     "vite-plugin-vuetify": "^2.0.4",
-    "vuetify": "^3.7.4"
+    "vuetify": "^3.13.8"
   }
 }

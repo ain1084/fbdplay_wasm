@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.20] - 2026-11-20
+
+### Changed
+
+- Updated npm dependencies, including Nuxt to 3.21.11 and Vuetify to 3.13.8.
+- Reduced `wasm-pack` output during development startup while keeping build errors visible.
+
+### Fixed
+
+- Removed obsolete Sass API options for Vite 7 and added Node.js type definitions for `nuxt.config.ts`.
+- Registered the `wasm-bindgen` coverage configuration to resolve Rust's `unexpected_cfgs` warnings during WASM builds.
+
 ## [0.1.19] - 2024-11-29
 
 - Updated various npm dependencies to their latest versions to ensure compatibility and maintainability.

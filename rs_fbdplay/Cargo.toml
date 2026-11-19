@@ -15,6 +15,9 @@ psg_lite = "0.1.2"
 psg = "1.0.1"
 fbd_sequencer = "0.2.2"
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(wasm_bindgen_unstable_test_coverage)'] }
+
 [profile.release]
 lto = true
 codegen-units = 1
