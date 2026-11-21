@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.1.21] - 2026-11-21
+
+### Security
+
+- Updated npm dependencies in `package-lock.json` using `npm audit fix`.
+
 ### Fixed
 
 - Fixed Vercel builds by reusing the available Rust toolchain and installing the `wasm32-unknown-unknown` target before building.
